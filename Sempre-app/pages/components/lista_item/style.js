@@ -10,5 +10,15 @@ export default StyleSheet.create({
         marginLeft: 70,
         marginBottom: 0
     },
+    imagem: {
+        margin: 2,
+        marginLeft: 10,
+        width: 50,
+        height: 50,
+        position: "absolute",
+    },
+    botao:{
+        marginTop: 10,
+    }
 
 })

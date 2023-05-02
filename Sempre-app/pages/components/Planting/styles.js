@@ -5,8 +5,8 @@ export default StyleSheet.create({
     width: "100%",
     textAlign: "justify",
     margin: 10,
-    fontSize: 26,
-    marginLeft: 70,
+    fontSize: 20,
+    marginLeft: 90,
     marginBottom: 0,
   },
   borda: {
@@ -15,10 +15,13 @@ export default StyleSheet.create({
     borderBottomWidth: 1,
   },
   imagem: {
-        margin: 2,
-        marginLeft: 10,
-        width: 50,
-        height: 50,
-        position: "absolute",
-    },
-});
+    margin: 2,
+    marginLeft: 25,
+    width: 40,
+    height: 40,
+    position: "absolute",
+  },
+  botao: {
+    marginTop: 15,
+  },
+  });
