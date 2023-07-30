@@ -7,19 +7,21 @@ import Plant from "../../../assets/images/icons/Planting.png";
 import Export from "../../../assets/images/icons/Export.png";
 import Settings from "../../../assets/images/icons/Settings.png";
 
-export default function Inicio() {
+
+
+export default function Inicio({ navigation }) {
   return (
     <>
-    <Header />
-      <TouchableOpacity style={styles.botao}>
+      <Header />
+      <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('Listas')}>
         <Image source={Entry} style={styles.imagem} />
         <Text style={styles.item}> Listas de Entrada</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.botao}>
+      <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('Fields')}>
         <Image source={Field} style={styles.imagem} />
         <Text style={styles.item}> Campos</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.botao}>
+      <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('Planting')}>
         <Image source={Plant} style={styles.imagem} />
         <Text style={styles.item}> Plantação</Text>
       </TouchableOpacity>

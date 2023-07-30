@@ -4,14 +4,28 @@ import Inicio from './pages/components/inicio';
 import Listas from './pages/components/listas';
 import Planting from './pages/components/Planting';
 import Fields from './pages/components/Fields';
+import Fields_item from './pages/components/fields_item';
 import Fields_add_field from './pages/components/fields_add_field';
 
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
+const Stack = createStackNavigator();
 export default function App() {
   return (
-    <View>
-      <Fields />
-    </View>
+
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Inicio'>
+        <Stack.Screen name="Inicio" component={Inicio} />
+        <Stack.Screen name="Listas" component={Listas} />
+        <Stack.Screen name="Planting" component={Planting} />
+        <Stack.Screen name="Fields" component={Fields} />
+        <Stack.Screen name="Fields_item" component={Fields_item} />
+        <Stack.Screen name="Fields_add_field" component={Fields_add_field} />
+      </Stack.Navigator>
+
+    </NavigationContainer>
+
   );
 }
 

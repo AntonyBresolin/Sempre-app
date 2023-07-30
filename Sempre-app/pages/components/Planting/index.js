@@ -7,12 +7,12 @@ import { useState } from "react";
 
 
 
-export default function Listas() {
+export default function Listas({ navigation }) {
   const [checked, setChecked] = useState('first');
   return (
     <>
       <Header />
-      <TouchableOpacity style={styles.botao}>
+      <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('Fields_item')}>
         <Image source={Circle_Not_Checked} style={styles.imagem} />
         <Text style={styles.primeiro_item}>Experimento 1</Text>
       </TouchableOpacity>
