@@ -1,19 +1,30 @@
-let colunaBorda;
-let tamanhoColuna;
-window.onload = function () {
-    tamanhoColuna = document.getElementById('coluna').value;;
+var colunaBorda = 3;
+var tamanhoColuna;
+var matrizMae = [];
 
-    colunaBorda = 3;
+var btn = document.getElementById('create');
+
+btn.onclick = () => {
+    tamanhoColuna = document.getElementById('coluna').value;
+
+    matrizMae = criarMatrizMae(tamanhoColuna);
+    console.log(matrizMae);
+    console.log("oi")
 }
 
-function criarMatrizMae(){
-    return new Array(tamanhoColuna);
+var btn2 = document.getElementById('add');
+
+btn2.onclick = () => {
+    adicionarSegmento(matrizMae);
+    console.log(matrizMae);
 }
 
 
 // Matriz mãe, que vai guardar os valores de todas as matrizes em uma só
-const matrizMae = criarMatrizMae();
-console.log(matrizMae);
+function criarMatrizMae(tamanhoColuna){
+    return new Array(tamanhoColuna);
+}
+
 
 function adicionarSegmento(matrizMae) {
     const tamanhoLinha = 5
