@@ -21,4 +21,15 @@ export default StyleSheet.create({
     height: 50,
     position: "absolute",
   },
+  nome_Elemento: {
+    width: "100%",
+    textAlign: "justify",
+    margin: 10,
+    fontSize: 26,
+    marginLeft: 70,
+    marginBottom: 0
+  },
+  botao: {
+    marginTop: 10,
+  },
 });
