@@ -1,8 +1,7 @@
 import React, { Image, Text, TouchableOpacity } from "react-native";
 import styles from "./styles";
-import Header from "../header";
-import Circle_Not_Checked from "../../../assets/images/icons/Circle_Not_Check.png";
-import Circle_Checked from "../../../assets/images/icons/Circle_Checked.png";
+import Circle_Not_Checked from "../../assets/images/icons/Circle_Not_Check.png";
+import Circle_Checked from "../../assets/images/icons/Circle_Checked.png";
 import { useState } from "react";
 
 
@@ -11,7 +10,6 @@ export default function Listas({ navigation }) {
   const [checked, setChecked] = useState('first');
   return (
     <>
-      <Header />
       <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('Fields_item')}>
         <Image source={Circle_Not_Checked} style={styles.imagem} />
         <Text style={styles.primeiro_item}>Experimento 1</Text>

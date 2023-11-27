@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import Inicio from './pages/components/inicio';
-import Listas from './pages/components/listas';
-import Planting from './pages/components/Planting';
+import Inicio from './pages/inicio';
+import Listas from './pages/listas';
+import Planting from './pages/Planting';
 import Fields from './pages/components/Fields';
 import Fields_item from './pages/components/fields_item';
 import Fields_add_field from './pages/components/fields_add_field';
@@ -13,7 +13,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator();
 export default function App() {
   return (
-
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Inicio'>
         <Stack.Screen name="Inicio" component={Inicio} />

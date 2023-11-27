@@ -2,14 +2,12 @@ import React, { Image, Text, TouchableOpacity } from "react-native";
 import styles from "./styles";
 import Circle_Not_Checked from "../../../assets/images/icons/circle.png";
 import Circle_Checked from "../../../assets/images/icons/check.png";
-import Header from "../header";
 
 import Add_Item from "../../../assets/images/icons/New_List.png";
 
 export default function Listas() {
   return (
     <>
-     <Header />
       <TouchableOpacity>
      <Image source={Add_Item} style={styles.imagem} />
         <Text style={styles.primeiro_item}>Criar um novo campo</Text>
