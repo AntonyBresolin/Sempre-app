@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { View, TouchableOpacity, Text, Image, StyleSheet } from 'react-native';
-import { listAllFields } from '../../../backend/listAllFields'; // Importe a função listAllFields
-
+import { useFocusEffect } from '@react-navigation/native';
+import { listAllFields } from '../../../backend/listAllFields';
 import styles from "./styles";
 import Add_Item from "../../../assets/images/icons/New_List.png";
 import experiment from "../../../assets/images/icons/Experiment.png";
@@ -12,14 +12,17 @@ import experiment from "../../../assets/images/icons/Experiment.png";
 export default function Listas({ navigation }) {
   const [fields, setFields] = useState([]);
 
-  useEffect(() => {
-    const fetchFields = async () => {
-      const allFields = await listAllFields();
-      setFields(allFields);
-    };
+  const fetchFields = async () => {
+    const allFields = await listAllFields();
+    setFields(allFields);
+  };
 
-    fetchFields();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      fetchFields();
+      return () => { };
+    }, [])
+  );
 
   return (
     <>
@@ -41,8 +44,6 @@ export default function Listas({ navigation }) {
           </TouchableOpacity>
         ))}
       </View>
-
-      {/* TODO - Listar os campos cadastrados*/}
 
     </>
   );
