@@ -6,6 +6,7 @@ import Planting from './pages/Planting';
 import Fields from './pages/components/Fields';
 import Fields_item from './pages/components/fields_item';
 import Fields_add_field from './pages/components/fields_add_field';
+import newExperiment from './pages/experimento';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -21,6 +22,7 @@ export default function App() {
         <Stack.Screen name="Fields" component={Fields} />
         <Stack.Screen name="Fields_item" component={Fields_item} />
         <Stack.Screen name="Fields_add_field" component={Fields_add_field} />
+        <Stack.Screen name="Experimento" component={newExperiment} />
       </Stack.Navigator>
 
     </NavigationContainer>

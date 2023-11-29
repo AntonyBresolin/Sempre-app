@@ -11,10 +11,6 @@ import Settings from "../../assets/images/icons/Settings.png";
 export default function Inicio({ navigation }) {
   return (
     <>
-      <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('Listas')}>
-        <Image source={Entry} style={styles.imagem} />
-        <Text style={styles.item}> Listas de Entrada</Text>
-      </TouchableOpacity>
       <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('Fields')}>
         <Image source={Field} style={styles.imagem} />
         <Text style={styles.item}> Campos</Text>

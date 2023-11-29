@@ -6,9 +6,6 @@ import styles from "./styles";
 import Add_Item from "../../../assets/images/icons/New_List.png";
 import experiment from "../../../assets/images/icons/Experiment.png";
 
-
-
-
 export default function Listas({ navigation }) {
   const [fields, setFields] = useState([]);
 
@@ -24,6 +21,10 @@ export default function Listas({ navigation }) {
     }, [])
   );
 
+  const onSelectField = (field) => {
+    navigation.navigate('Listas', { fieldKey: field.key });
+  };
+
   return (
     <>
       <TouchableOpacity onPress={() => navigation.navigate('Fields_add_field')}>
@@ -37,14 +38,14 @@ export default function Listas({ navigation }) {
           <TouchableOpacity
             key={field.key}
             style={styles.botao}
-            onPress={() => onSelectField(field)}
+            onPress={() => onSelectField(field)
+            }
           >
             <Image source={experiment} style={styles.imagem} />
             <Text style={styles.nome_Elemento}>{field.nome}</Text>
           </TouchableOpacity>
         ))}
       </View>
-
     </>
   );
 }
