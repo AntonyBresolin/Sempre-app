@@ -1,24 +1,45 @@
-import React, { Image, Text, TouchableOpacity } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Image, Text, TouchableOpacity, ScrollView } from "react-native";
 import styles from "./styles";
-import Item from "../components/lista_item";
+import { useNavigation, useRoute, useFocusEffect } from '@react-navigation/native';
+import { listExperimentsFromField } from '../../backend/listExperimentsFromField'; // Importe a função
 import Add_Item from "../../assets/images/icons/New_List.png";
-import { useNavigation } from '@react-navigation/native'
+import experiment from "../../assets/images/icons/Experiment.png";
 
 export default function Listas() {
-  const navigation = useNavigation();
+  const [experiments, setExperiments] = useState([]);
+    const route = useRoute();
+    const navigation = useNavigation();
+    const fieldKey = route.params.fieldKey;
 
-  function handleClick() {
-    //TODO - Criar um novo experimento em um campo
-    { navigation.navigate("newExperiment")}
+    useFocusEffect(
+      React.useCallback(() => {
+          const fetchExperiments = async () => {
+              const experiments = await listExperimentsFromField(fieldKey);
+              setExperiments(experiments);
+          };
+
+          fetchExperiments();
+      }, [fieldKey])
+  );
+
+  function handleAddExperiment () {
+    navigation.navigate('Experimento', { fieldKey });
   }
+
   return (
     <>
-      <TouchableOpacity onPress={handleClick}>
+      <TouchableOpacity onPress={handleAddExperiment}>
         <Image source={Add_Item} style={styles.imagem} />
-        <Text style={styles.primeiro_item}>Criar uma nova lista</Text>
+        <Text style={styles.primeiro_item}>Criar um novo experimento</Text>
       </TouchableOpacity>
       <Text style={styles.borda} />
-      <Item />
+        {experiments.map((experimento, index) => (
+          <TouchableOpacity key={index} style={styles.botao}>
+            <Image source={experiment} style={styles.imagem} />
+            <Text style={styles.nome_Elemento}>{experimento.nome}</Text>
+          </TouchableOpacity>
+        ))}
     </>
   );
 }
