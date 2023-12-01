@@ -4,7 +4,6 @@ export async function listExperimentsFromField(fieldKey) {
     try {
         const jsonValue = await AsyncStorage.getItem(fieldKey);
         const fieldData = jsonValue != null ? JSON.parse(jsonValue) : null;
-
         if (fieldData && fieldData.experiments) {
             return fieldData.experiments;
         } else {
@@ -13,6 +12,6 @@ export async function listExperimentsFromField(fieldKey) {
         }
     } catch (e) {
         console.error("Erro ao listar os experimentos", e);
-        return []; 
+        return [];
     }
 }
