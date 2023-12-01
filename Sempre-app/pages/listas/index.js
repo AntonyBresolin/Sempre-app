@@ -6,6 +6,7 @@ import { listExperimentsFromField } from '../../backend/listExperimentsFromField
 import Add_Item from "../../assets/images/icons/New_List.png";
 import experiment from "../../assets/images/icons/Experiment.png";
 import Icon from 'react-native-vector-icons/Ionicons';
+import { removeExperimentFromField } from '../../backend/removeExperiment';
 
 
 export default function Listas() {
@@ -14,9 +15,18 @@ export default function Listas() {
   const navigation = useNavigation();
   const fieldKey = route.params.fieldKey;
 
-  const handleClickExcluir = () => {
-    alert('Excluir');
-  }
+
+  const handleClickExcluir = (experimentName) => {
+    return async () => {
+      try {
+        await removeExperimentFromField(fieldKey, experimentName);
+        const updatedExperiments = await listExperimentsFromField(fieldKey);
+        setExperiments(updatedExperiments);
+      } catch (e) {
+        alert('Erro ao remover experimento');
+      }
+    };
+  };
 
   const handleClickEditExperiment = () => {
     alert('Editar');
@@ -54,7 +64,7 @@ export default function Listas() {
             <TouchableOpacity style={styles.botao_Editar} >
               <Icon name="brush-outline" size={26} color="gray" onPress={handleClickEditExperiment} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.botao_Excluir} onPress={handleClickExcluir}>
+            <TouchableOpacity style={styles.botao_Excluir} onPress={handleClickExcluir(experimento.nome)}>
               <Icon name="trash-outline" size={26} color="red" />
             </TouchableOpacity>
           </View>

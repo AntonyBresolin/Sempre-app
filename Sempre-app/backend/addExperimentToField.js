@@ -23,8 +23,6 @@ export async function addExperimentToField(fieldKey, experimentName) {
 
         const updatedJsonValue = JSON.stringify(fieldData);
         await AsyncStorage.setItem(fieldKey, updatedJsonValue);
-
-        console.log("Experimento adicionado com sucesso");
     } catch (e) {
         console.error("Erro ao adicionar experimento", e);
     }
