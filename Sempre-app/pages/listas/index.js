@@ -28,7 +28,7 @@ export default function Listas() {
     };
   };
 
-  const handleClickEditExperiment = () => {
+  const handleClickEditExperiment = (experimentName) => {
     alert('Editar');
   }
 
@@ -62,7 +62,7 @@ export default function Listas() {
           </View>
           <View style={styles.opcao_botao}>
             <TouchableOpacity style={styles.botao_Editar} >
-              <Icon name="brush-outline" size={26} color="gray" onPress={handleClickEditExperiment} />
+              <Icon name="brush-outline" size={26} color="gray" onPress={handleClickEditExperiment(experimento.nome)} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.botao_Excluir} onPress={handleClickExcluir(experimento.nome)}>
               <Icon name="trash-outline" size={26} color="red" />
