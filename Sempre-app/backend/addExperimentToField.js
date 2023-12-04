@@ -1,5 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+function generateUniqueId(){
+    return Math.floor(Math.random() * 100000) + 1;    
+
+}
+
+
 export async function addExperimentToField(fieldKey, experimentName) {
     try {
         const jsonValue = await AsyncStorage.getItem(fieldKey);
@@ -16,6 +22,7 @@ export async function addExperimentToField(fieldKey, experimentName) {
         }
 
         const newExperiment = {
+            id: generateUniqueId(),
             nome: experimentName
         };
 

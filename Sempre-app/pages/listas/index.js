@@ -28,8 +28,9 @@ export default function Listas() {
     };
   };
 
-  const handleClickEditExperiment = (experimentName) => {
-    alert('Editar');
+  
+  const handleClickEditExperiment = (experimentId, experimentName) => {
+    navigation.navigate('Item', { fieldKey: fieldKey, experimentId: experimentId, experimentName: experimentName });
   }
 
   useFocusEffect(
@@ -61,8 +62,8 @@ export default function Listas() {
             <Text style={styles.nome_Elemento}>{experimento.nome}</Text>
           </View>
           <View style={styles.opcao_botao}>
-            <TouchableOpacity style={styles.botao_Editar} >
-              <Icon name="brush-outline" size={26} color="gray" onPress={handleClickEditExperiment(experimento.nome)} />
+            <TouchableOpacity style={styles.botao_Editar} onPress={() => handleClickEditExperiment(experimento.id, experimento.nome)}>
+              <Icon name="brush-outline" size={26} color="gray" />
             </TouchableOpacity>
             <TouchableOpacity style={styles.botao_Excluir} onPress={handleClickExcluir(experimento.nome)}>
               <Icon name="trash-outline" size={26} color="red" />
