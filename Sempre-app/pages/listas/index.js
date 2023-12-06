@@ -14,7 +14,12 @@ export default function Listas() {
   const route = useRoute();
   const navigation = useNavigation();
   const fieldKey = route.params.fieldKey;
+  const fieldColumns = route.params.fieldColumns;
 
+
+  const handleClickViewItens = (experimentId, experimentName) => {
+    navigation.navigate('ItensView', { fieldKey: fieldKey, fieldColumns: fieldColumns , experimentId: experimentId, experimentName: experimentName });
+  }
 
   const handleClickExcluir = (experimentName) => {
     return async () => {
@@ -56,7 +61,7 @@ export default function Listas() {
       </TouchableOpacity>
       <Text style={styles.borda} />
       {experiments.map((experimento, index) => (
-        <TouchableOpacity key={index} style={styles.botao}>
+        <TouchableOpacity key={index} style={styles.botao} onPress={() => handleClickViewItens(experimento.id, experimento.nome)}>
           <View>
             <Image source={experiment} style={styles.imagem} />
             <Text style={styles.nome_Elemento}>{experimento.nome}</Text>
