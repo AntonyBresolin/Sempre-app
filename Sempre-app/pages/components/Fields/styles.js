@@ -29,16 +29,18 @@ export default StyleSheet.create({
     marginLeft: 70,
     marginBottom: 0
   },
-  botao: {
+  botao_Itens: {
     marginTop: 10,
+    marginLeft: 10,
   },
   opcao_botao: {
     display: "flex",
     flexDirection: "row",
     margin: 10,
   },
-  botao_Excluir: {
+  itens: {
+    display: "flex",
+    flexDirection: "row",
     marginLeft: "auto",
-    margin: 10,
-  }
+  },
 });

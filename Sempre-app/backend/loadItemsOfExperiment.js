@@ -18,7 +18,7 @@ export async function loadItemsOfExperiment(fieldKey, experimentId) {
         }
         return experiment.itens || [];
     } catch (e) {
-        console.error("Erro ao carregar itens do experimento", e);
+        console.error("Erro ao carregar itens do experimento EM LoadITEMS", e);
         return [];
     }
 }
