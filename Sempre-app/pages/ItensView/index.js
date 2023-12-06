@@ -12,6 +12,10 @@ const ItensView = () => {
 
     const { fieldKey, fieldColumns, experimentId, experimentName } = route.params;
 
+    const invertOrderInOddRows = (group, rowIndex) => {
+        return rowIndex % 2 === 0 ? group : [...group].reverse();
+    };
+
     useEffect(() => {
         const fetchItems = async () => {
             try {
@@ -25,10 +29,10 @@ const ItensView = () => {
         fetchItems();
     }, [fieldKey, experimentId]);
 
-    // Dividir os itens em grupos
     const itemGroups = [];
     for (let i = 0; i < itens.length; i += fieldColumns) {
-        itemGroups.push(itens.slice(i, i + fieldColumns));
+        const group = itens.slice(i, i + fieldColumns);
+        itemGroups.push(invertOrderInOddRows(group, itemGroups.length));
     }
 
     const itemSize = Dimensions.get('window').width / 5;
@@ -37,8 +41,8 @@ const ItensView = () => {
         <View style={{ flex: 1 }}>
             <Text style={{ fontSize: 20, textAlign: 'center', margin: 10 }}>{experimentName}</Text>
             <ScrollView vertical={true} showsVerticalScrollIndicator={true}>
-                {itemGroups.map((group, index) => (
-                    <ScrollView key={index} horizontal={true} style={{ flexDirection: 'row' }}>
+            {itemGroups.map((group, index) => (
+                <ScrollView key={index} horizontal={true} showsHorizontalScrollIndicator={false} style={{ flexDirection: 'row' }}>
                         <View style={{
                             width: itemSize, height: itemSize, justifyContent: 'center', alignItems: 'center', margin: 1, backgroundColor: '#0F0'
                         }}>
