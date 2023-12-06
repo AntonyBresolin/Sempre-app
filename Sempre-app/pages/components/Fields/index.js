@@ -28,11 +28,15 @@ export default function Listas({ navigation }) {
     try {
       await deleteFieldAndAllData(fieldName);
       Alert.alert('Campo removido com sucesso!');
-      fetchFields(); 
+      fetchFields();
     } catch (e) {
       Alert.alert('Erro', 'Erro ao remover campo');
     }
   };
+
+  const handleClickViewAllExperiments = (field) => {
+    navigation.navigate('TodosItensView', {field});
+  }
 
   const onSelectField = (field) => {
     navigation.navigate('Listas', { fieldKey: field.key, fieldColumns: field.colunas });
@@ -59,9 +63,14 @@ export default function Listas({ navigation }) {
                 <Image source={experiment} style={styles.imagem} />
                 <Text style={styles.nome_Elemento}>{field.nome}</Text>
               </View>
-              <TouchableOpacity style={styles.botao_Excluir} onPress={() => handleClickExcluir(field.nome)}>
-                <Icon name="trash-outline" size={26} color="red" />
-              </TouchableOpacity>
+              <View style={styles.itens}>
+                <TouchableOpacity style={styles.botao_Itens} onPress={() => handleClickViewAllExperiments(field)}>
+                  <Icon name="eye-outline" size={26} color="blue" />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.botao_Itens} onPress={() => handleClickExcluir(field.nome)}>
+                  <Icon name="trash-outline" size={26} color="red" />
+                </TouchableOpacity>
+              </View>
             </View>
           </TouchableOpacity>
         ))}

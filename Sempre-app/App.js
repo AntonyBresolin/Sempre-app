@@ -12,6 +12,7 @@ import addItem from './pages/item';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import ItensView from './pages/ItensView';
+import TodosItensView from './pages/TodosItensView';
 
 const Stack = createStackNavigator();
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
         <Stack.Screen name="Experimento" component={newExperiment} />
         <Stack.Screen name="Item" component={addItem} />
         <Stack.Screen name="ItensView" component={ItensView} />
+        <Stack.Screen name="TodosItensView" component={TodosItensView} />
       </Stack.Navigator>
 
     </NavigationContainer>

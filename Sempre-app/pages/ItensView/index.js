@@ -1,33 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
 import { loadItemsOfExperiment } from '../../backend/loadItemsOfExperiment';
-import { useRoute } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from './styles';
+import { useRoute, useIsFocused } from '@react-navigation/native';
 
-
-const ItensView = () => {
+const ItensView = (props) => {
     const [itens, setItens] = useState([]);
     const route = useRoute();
+    const isFocused = useIsFocused();
 
-    const { fieldKey, fieldColumns, experimentId, experimentName } = route.params;
+    // Determinando os valores a partir de props ou route.params
+    const fieldKey = props.fieldKey || route.params?.fieldKey;
+    const fieldColumns = props.fieldColumns || route.params?.fieldColumns;
+    const experimentId = props.experimentId || route.params?.experimentId;
+    const experimentName = props.experimentName || route.params?.experimentName;
+
+    useEffect(() => {
+        if (fieldKey && experimentId) {
+            const fetchItems = async () => {
+                try {
+                    const loadedItems = await loadItemsOfExperiment(fieldKey, experimentId);
+                    setItens(loadedItems);
+                } catch (error) {
+                    console.error('Erro ao carregar itens do experimento:', error);
+                }
+            };
+    
+            fetchItems();
+        }
+    }, [fieldKey, experimentId, isFocused]);
 
     const invertOrderInOddRows = (group, rowIndex) => {
         return rowIndex % 2 === 0 ? group : [...group].reverse();
     };
-
-    useEffect(() => {
-        const fetchItems = async () => {
-            try {
-                const loadedItems = await loadItemsOfExperiment(fieldKey, experimentId);
-                setItens(loadedItems);
-            } catch (error) {
-                console.error('Erro ao carregar itens do experimento:', error);
-            }
-        };
-
-        fetchItems();
-    }, [fieldKey, experimentId]);
 
     const itemGroups = [];
     for (let i = 0; i < itens.length; i += fieldColumns) {
@@ -41,8 +47,8 @@ const ItensView = () => {
         <View style={{ flex: 1 }}>
             <Text style={{ fontSize: 20, textAlign: 'center', margin: 10 }}>{experimentName}</Text>
             <ScrollView vertical={true} showsVerticalScrollIndicator={true}>
-            {itemGroups.map((group, index) => (
-                <ScrollView key={index} horizontal={true} showsHorizontalScrollIndicator={false} style={{ flexDirection: 'row' }}>
+                {itemGroups.map((group, index) => (
+                    <ScrollView key={index} horizontal={true} showsHorizontalScrollIndicator={false} style={{ flexDirection: 'row' }}>
                         <View style={{
                             width: itemSize, height: itemSize, justifyContent: 'center', alignItems: 'center', margin: 1, backgroundColor: '#0F0'
                         }}>
