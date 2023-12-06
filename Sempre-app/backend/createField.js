@@ -3,7 +3,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default async function createField(fieldKey, tamanhoColuna) {
     const fieldData = {
         nome: fieldKey,
-        colunas: new Array(tamanhoColuna).fill(null) // Inicializa o array com valores nulos
+        colunas: tamanhoColuna,
+        experimentos: []
     };
 
     const jsonValue = JSON.stringify(fieldData);

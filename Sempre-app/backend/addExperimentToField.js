@@ -23,7 +23,7 @@ export async function addExperimentToField(fieldKey, experimentName) {
 
         const newExperiment = {
             id: generateUniqueId(),
-            nome: experimentName
+            nome: experimentName,
         };
 
         fieldData.experiments.push(newExperiment);

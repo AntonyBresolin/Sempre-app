@@ -5,6 +5,9 @@ import { listAllFields } from '../../../backend/listAllFields';
 import styles from "./styles";
 import Add_Item from "../../../assets/images/icons/New_List.png";
 import experiment from "../../../assets/images/icons/Experiment.png";
+import Icon from 'react-native-vector-icons/Ionicons';
+import { deleteFieldAndAllData } from '../../../backend/deleteFieldAndAllData';
+
 
 export default function Listas({ navigation }) {
   const [fields, setFields] = useState([]);
@@ -21,8 +24,18 @@ export default function Listas({ navigation }) {
     }, [])
   );
 
+  const handleClickExcluir = async (fieldName) => {
+    try {
+      await deleteFieldAndAllData(fieldName);
+      Alert.alert('Campo removido com sucesso!');
+      fetchFields(); 
+    } catch (e) {
+      Alert.alert('Erro', 'Erro ao remover campo');
+    }
+  };
+
   const onSelectField = (field) => {
-    navigation.navigate('Listas', { fieldKey: field.key });
+    navigation.navigate('Listas', { fieldKey: field.key, fieldColumns: field.colunas });
   };
 
   return (
@@ -41,8 +54,15 @@ export default function Listas({ navigation }) {
             onPress={() => onSelectField(field)
             }
           >
-            <Image source={experiment} style={styles.imagem} />
-            <Text style={styles.nome_Elemento}>{field.nome}</Text>
+            <View style={styles.opcao_botao}>
+              <View>
+                <Image source={experiment} style={styles.imagem} />
+                <Text style={styles.nome_Elemento}>{field.nome}</Text>
+              </View>
+              <TouchableOpacity style={styles.botao_Excluir} onPress={() => handleClickExcluir(field.nome)}>
+                <Icon name="trash-outline" size={26} color="red" />
+              </TouchableOpacity>
+            </View>
           </TouchableOpacity>
         ))}
       </View>
