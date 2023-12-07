@@ -13,14 +13,17 @@ const TodosItensView = () => {
     const route = useRoute();
     const [allExperiments, setAllExperiments] = useState([]);
     const { field } = route.params;
+    const [allData, setAllData] = useState([]);
 
-    const data = [
-        ['Nome', 'Idade', 'Sexo'],
-        ['João', 14, 'Masculino'],
-        ['Maria', 12, 'Feminino'],
-        ['José', 13, 'Masculino']
-    ];      
+    const handleDataFromChild = (childData) => {
+        setAllData(prevData => [...prevData, ...childData]);
 
+        // console.log("Dados de um experimento: ");
+        // console.log(childData);
+
+        // console.log("Dados de todos os experimentos: ");
+        // console.log(allData);
+    };
 
     useEffect(() => {
 
@@ -35,7 +38,7 @@ const TodosItensView = () => {
 
     const handleClickExportExcel = async () => {
         try {
-            const filePath = await exportToExcel(data, field.name);
+            const filePath = await exportToExcel(allData, field.name);
             if (!(await Sharing.isAvailableAsync())) {
                 alert('A opção de compartilhamento não está disponível em seu dispositivo.');
                 return;
@@ -61,6 +64,7 @@ const TodosItensView = () => {
                     fieldColumns={field.colunas}
                     experimentId={exp.id}
                     experimentName={exp.nome}
+                    onDataReady={handleDataFromChild}
                 />
             ))}
         </ScrollView>
