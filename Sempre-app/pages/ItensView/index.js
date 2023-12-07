@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
 import { loadItemsOfExperiment } from '../../backend/loadItemsOfExperiment';
-import Icon from 'react-native-vector-icons/Ionicons';
-import styles from './styles';
 import { useRoute, useIsFocused } from '@react-navigation/native';
 
 const ItensView = (props) => {
@@ -10,7 +8,6 @@ const ItensView = (props) => {
     const route = useRoute();
     const isFocused = useIsFocused();
 
-    // Determinando os valores a partir de props ou route.params
     const fieldKey = props.fieldKey || route.params?.fieldKey;
     const fieldColumns = props.fieldColumns || route.params?.fieldColumns;
     const experimentId = props.experimentId || route.params?.experimentId;
@@ -73,10 +70,7 @@ const ItensView = (props) => {
                         </View>
                     </ScrollView>
                 ))}
-                <TouchableOpacity style={styles.botao} onPress={() => alert("Ainda não adicionado")}>
-                    <Icon name='save-outline' size={26} color={"blue"} />
-                    <Text style={styles.exportar}>Exportar</Text>
-                </TouchableOpacity>
+                
             </ScrollView>
         </View>
     );
