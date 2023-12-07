@@ -25,6 +25,14 @@ const TodosItensView = () => {
         // console.log(allData);
     };
 
+    const data = [
+        ['Nome', 'Idade', 'Sexo'],
+        ['João', 14, 'Masculino'],
+        ['Maria', 12, 'Feminino'],
+        ['José', 13, 'Masculino']
+    ];      
+
+
     useEffect(() => {
 
         const fetchAllExperiments = async () => {
@@ -39,6 +47,7 @@ const TodosItensView = () => {
     const handleClickExportExcel = async () => {
         try {
             const filePath = await exportToExcel(allData, field.name);
+
             if (!(await Sharing.isAvailableAsync())) {
                 alert('A opção de compartilhamento não está disponível em seu dispositivo.');
                 return;
