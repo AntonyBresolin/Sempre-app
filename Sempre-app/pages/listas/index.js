@@ -35,7 +35,7 @@ export default function Listas() {
 
   
   const handleClickEditExperiment = (experimentId, experimentName) => {
-    navigation.navigate('Item', { fieldKey: fieldKey, experimentId: experimentId, experimentName: experimentName });
+    navigation.navigate('Item', { fieldKey: fieldKey, experimentId: experimentId, experimentName: experimentName, fieldColumns: fieldColumns });
   }
 
   useFocusEffect(

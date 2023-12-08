@@ -12,6 +12,7 @@ const Item = () => {
     const fieldKey = route.params.fieldKey;
     const experimentId = route.params.experimentId;
     const experimentName = route.params.experimentName;
+    const fieldColumns = route.params.fieldColumns;
 
     const handleAddItems = async () => {
         const startNumber = parseInt(itemStart, 10);
@@ -23,7 +24,7 @@ const Item = () => {
         }
 
         try {
-            await generateAndAddItems(fieldKey, experimentId, startNumber, itemCount);
+            await generateAndAddItems(fieldKey, experimentId, startNumber, itemCount, fieldColumns);
             Alert.alert("Sucesso", `${itemCount} itens adicionados ao experimento.`);
             setItemAmount("");
             setItemStart("");
