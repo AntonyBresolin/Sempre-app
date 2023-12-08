@@ -1,7 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export async function generateAndAddItems(fieldKey, experimentId, startNumber, itemCount) {
+export async function generateAndAddItems(fieldKey, experimentId, startNumber, itemCount, fieldColumns) {
     try {
+        console.log(fieldColumns)
         const jsonValue = await AsyncStorage.getItem(fieldKey);
         let fieldData = jsonValue != null ? JSON.parse(jsonValue) : null;
 
@@ -20,8 +21,19 @@ export async function generateAndAddItems(fieldKey, experimentId, startNumber, i
             experiment.itens = [];
         }
 
+
+        let contador = 1;
         for (let i = 1; i <= itemCount; i++) {
             experiment.itens.push({ nome: (startNumber + i).toString() });
+            if(i === fieldColumns*contador){
+                contador++;
+            }
+        }
+
+        if (fieldColumns*contador > itemCount) {
+            for (let i = 1; i <= ((fieldColumns*contador) - itemCount); i++) {
+                experiment.itens.push({ nome: "Borda" });
+            }
         }
 
         const updatedJsonValue = JSON.stringify(fieldData);
