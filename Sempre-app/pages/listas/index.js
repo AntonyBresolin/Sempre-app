@@ -60,23 +60,25 @@ export default function Listas() {
         <Text style={styles.primeiro_item}>Criar um novo experimento</Text>
       </TouchableOpacity>
       <Text style={styles.borda} />
-      {experiments.map((experimento, index) => (
-        <TouchableOpacity key={index} style={styles.botao} onPress={() => handleClickViewItens(experimento.id, experimento.nome)}>
-          <View>
-            <Image source={experiment} style={styles.imagem} />
-            <Text style={styles.nome_Elemento}>{experimento.nome}</Text>
-          </View>
-          <View style={styles.opcao_botao}>
-            <TouchableOpacity style={styles.botao_Editar} onPress={() => handleClickEditExperiment(experimento.id, experimento.nome)}>
-              <Icon name="add-outline" size={26} color="green" />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.botao_Excluir} onPress={handleClickExcluir(experimento.nome)}>
-              <Icon name="trash-outline" size={26} color="red" />
-            </TouchableOpacity>
-          </View>
+      <ScrollView>
+        {experiments.map((experimento, index) => (
+          <TouchableOpacity key={index} style={styles.botao} onPress={() => handleClickViewItens(experimento.id, experimento.nome)}>
+            <View>
+              <Image source={experiment} style={styles.imagem} />
+              <Text style={styles.nome_Elemento}>{experimento.nome}</Text>
+            </View>
+            <View style={styles.opcao_botao}>
+              <TouchableOpacity style={styles.botao_Editar} onPress={() => handleClickEditExperiment(experimento.id, experimento.nome)}>
+                <Icon name="add-outline" size={26} color="green" />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.botao_Excluir} onPress={handleClickExcluir(experimento.nome)}>
+                <Icon name="trash-outline" size={26} color="red" />
+              </TouchableOpacity>
+            </View>
 
-        </TouchableOpacity>
-      ))}
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
     </>
   );
 }

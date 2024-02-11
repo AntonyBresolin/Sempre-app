@@ -15,10 +15,10 @@ export default function Inicio({ navigation }) {
         <Image source={Field} style={styles.imagem} />
         <Text style={styles.item}> Campos</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('Planting')}>
+      {/*<TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('Planting')}>
         <Image source={Plant} style={styles.imagem} />
         <Text style={styles.item}> Plantação</Text>
-      </TouchableOpacity>
+      </TouchableOpacity>*/}
       <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('ExportView')}>
         <Image source={Export} style={styles.imagem} />
         <Text style={styles.item}> Exportar</Text>

@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { View, TouchableOpacity, Text, Image, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { listAllFields } from '../../../backend/listAllFields';
 import styles from "./styles";
@@ -35,7 +35,7 @@ export default function Listas({ navigation }) {
   };
 
   const handleClickViewAllExperiments = (field) => {
-    navigation.navigate('TodosItensView', {field});
+    navigation.navigate('TodosItensView', { field });
   }
 
   const onSelectField = (field) => {
@@ -50,7 +50,7 @@ export default function Listas({ navigation }) {
       </TouchableOpacity>
       <Text style={styles.borda} />
 
-      <View>
+      <ScrollView>
         {fields.map(field => (
           <TouchableOpacity
             key={field.key}
@@ -74,7 +74,7 @@ export default function Listas({ navigation }) {
             </View>
           </TouchableOpacity>
         ))}
-      </View>
+      </ScrollView>
     </>
   );
 }
