@@ -19,11 +19,11 @@ export default function Inicio({ navigation }) {
         <Image source={Plant} style={styles.imagem} />
         <Text style={styles.item}> Plantação</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.botao}>
+      <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('ExportView')}>
         <Image source={Export} style={styles.imagem} />
         <Text style={styles.item}> Exportar</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.botao}>
+      <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('Configuration')}>
         <Image source={Settings} style={styles.imagem} />
         <Text style={styles.item}> Opções</Text>
       </TouchableOpacity>

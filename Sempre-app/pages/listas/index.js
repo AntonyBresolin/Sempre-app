@@ -18,7 +18,7 @@ export default function Listas() {
 
 
   const handleClickViewItens = (experimentId, experimentName) => {
-    navigation.navigate('ItensView', { fieldKey: fieldKey, fieldColumns: fieldColumns , experimentId: experimentId, experimentName: experimentName });
+    navigation.navigate('ItensView', { fieldKey: fieldKey, fieldColumns: fieldColumns, experimentId: experimentId, experimentName: experimentName });
   }
 
   const handleClickExcluir = (experimentName) => {
@@ -33,7 +33,7 @@ export default function Listas() {
     };
   };
 
-  
+
   const handleClickEditExperiment = (experimentId, experimentName) => {
     navigation.navigate('Item', { fieldKey: fieldKey, experimentId: experimentId, experimentName: experimentName, fieldColumns: fieldColumns });
   }
@@ -68,7 +68,7 @@ export default function Listas() {
           </View>
           <View style={styles.opcao_botao}>
             <TouchableOpacity style={styles.botao_Editar} onPress={() => handleClickEditExperiment(experimento.id, experimento.nome)}>
-              <Icon name="brush-outline" size={26} color="gray" />
+              <Icon name="add-outline" size={26} color="green" />
             </TouchableOpacity>
             <TouchableOpacity style={styles.botao_Excluir} onPress={handleClickExcluir(experimento.nome)}>
               <Icon name="trash-outline" size={26} color="red" />

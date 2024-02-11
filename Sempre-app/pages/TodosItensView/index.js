@@ -25,16 +25,7 @@ const TodosItensView = () => {
         // console.log(allData);
     };
 
-    const data = [
-        ['Nome', 'Idade', 'Sexo'],
-        ['João', 14, 'Masculino'],
-        ['Maria', 12, 'Feminino'],
-        ['José', 13, 'Masculino']
-    ];      
-
-
     useEffect(() => {
-
         const fetchAllExperiments = async () => {
             const experiments = await listExperimentsFromField(field.key);
             setAllExperiments(experiments);

@@ -13,25 +13,31 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import ItensView from './pages/ItensView';
 import TodosItensView from './pages/TodosItensView';
+import Configuration from './pages/Configuration/Configuration';
+import { AppProvider } from './pages/Contexts/AppContext';
+import ExportView from './pages/ExportView/ExportView';
 
 const Stack = createStackNavigator();
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName='Inicio'>
-        <Stack.Screen name="Inicio" component={Inicio} />
-        <Stack.Screen name="Listas" component={Listas} />
-        <Stack.Screen name="Planting" component={Planting} />
-        <Stack.Screen name="Fields" component={Fields} />
-        <Stack.Screen name="Fields_item" component={Fields_item} />
-        <Stack.Screen name="Fields_add_field" component={Fields_add_field} />
-        <Stack.Screen name="Experimento" component={newExperiment} />
-        <Stack.Screen name="Item" component={addItem} />
-        <Stack.Screen name="ItensView" component={ItensView} />
-        <Stack.Screen name="TodosItensView" component={TodosItensView} />
-      </Stack.Navigator>
-
-    </NavigationContainer>
+    <AppProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName='Inicio'>
+          <Stack.Screen name="Inicio" component={Inicio} />
+          <Stack.Screen name="Listas" component={Listas} />
+          <Stack.Screen name="Planting" component={Planting} />
+          <Stack.Screen name="Fields" component={Fields} />
+          <Stack.Screen name="Fields_item" component={Fields_item} />
+          <Stack.Screen name="Fields_add_field" component={Fields_add_field} />
+          <Stack.Screen name="Experimento" component={newExperiment} />
+          <Stack.Screen name="Item" component={addItem} />
+          <Stack.Screen name="ItensView" component={ItensView} />
+          <Stack.Screen name="TodosItensView" component={TodosItensView} />
+          <Stack.Screen name="Configuration" component={Configuration} />
+          <Stack.Screen name="ExportView" component={ExportView} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </AppProvider>
 
   );
 }
